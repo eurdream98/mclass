@@ -48,7 +48,7 @@ pipeline {
         }
     }
 
-    stage('Remote Docker Builde & Deploy'){
+    stage('Remote Docker Build & Deploy'){
         steps{
             sshagent(credentials: [env.SSH_CREDENTIALS_ID]){
                 sh"""
