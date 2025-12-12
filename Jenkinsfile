@@ -25,6 +25,31 @@ pipeline {
             }
         }
 
+         /* ---------------------------------------
+         * ⭐ 1. Frontend Build (React)
+         * --------------------------------------- */
+        stage('Frontend Build'){
+            steps{
+                dir('frontend'){
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
+
+        /* ---------------------------------------
+         * ⭐ 2. React Build → Spring static 자동 복사
+         * --------------------------------------- */
+        stage('Copy Frontend Build to Backend'){
+            steps{
+                // 기존 static 제거
+                sh 'rm -rf src/main/resources/static/*'
+
+                // React build 결과 복사
+                sh 'cp -r frontend/build/* src/main/resources/static/'
+            }
+        }
+
         stage('Maven Build'){
             steps{
                 sh 'mvn clean package -DskipTests'
