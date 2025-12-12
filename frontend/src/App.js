@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const API_BASE = "http://localhost:8081/api/members"; // 필요 시 환경 변수로 분리
+const API_BASE = process.env.REACT_APP_API_BASE;
+
+if (!API_BASE) {
+  throw new Error(
+    "REACT_APP_API_BASE가 설정되어 있지 않습니다. .env.development / .env.production 확인하세요."
+  );
+}
 
 function App() {
   const [members, setMembers] = useState([]);
