@@ -3,7 +3,7 @@ pipeline {
     tools{
         maven 'maven 3.9.11'
         nodejs 'node18'
-        
+
     }
 
     environment{
@@ -25,6 +25,12 @@ pipeline {
         stage('Git Checkout'){
             steps{
                 checkout scm
+            }
+        }
+        stage('nodejs 16') {
+            steps {
+                echo "nodejs ============================="
+                sh 'node --version'
             }
         }
 
