@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools{
         maven 'maven 3.9.11'
+        nodejs "node18"
     }
 
     environment{
@@ -16,6 +17,7 @@ pipeline {
         REMOTE_DIR = "/home/ec2-user/deploy"
 
         SSH_CREDENTIALS_ID = "057d957a-6607-4a5d-b2f0-a9116adbf5d2"
+        PATH="/usr/bin:/usr/local/bin:${env.PATH}"
     }
 
     stages{
